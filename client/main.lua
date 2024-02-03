@@ -46,7 +46,7 @@ local function RegisterEntranceTarget()
   local coords = vector3(Config.OutsideLocation.x, Config.OutsideLocation.y, Config.OutsideLocation.z)
 
   if Config.UseTarget then
-    entranceZone = exports['qb-target']:AddBoxZone(entranceTargetID, coords, 1, 4, {
+    entranceZone = exports['qb-target']:AddBoxZone(entranceTargetID, coords, 2, 4, {
       name = entranceTargetID,
       heading = 44.0,
       minZ = Config.OutsideLocation.z - 1.0,
@@ -60,7 +60,7 @@ local function RegisterEntranceTarget()
           label = Lang:t("text.enter_warehouse"),
         },
       },
-      distance = 1.0
+      distance = 2.0
     })
   else
     entranceZone = BoxZone:Create(coords, 1, 4, {
@@ -101,7 +101,7 @@ local function RegisterExitTarget()
           label = Lang:t("text.exit_warehouse"),
         },
       },
-      distance = 1.0
+      distance = 1.5
     })
   else
     exitZone = BoxZone:Create(coords, 1, 4, {
@@ -485,6 +485,7 @@ RegisterNetEvent('qb-recyclejob:client:target:pickupPackage', function()
       DestroyPickupTarget()
       RegisterDeliveyTarget()
     end)
+    QBCore.Functions.Notify('Dirigez vous vers le lieu de traitement', 'success')
 end)
 
 RegisterNetEvent('qb-recyclejob:client:target:dropPackage', function()
